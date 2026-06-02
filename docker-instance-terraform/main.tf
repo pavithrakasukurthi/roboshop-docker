@@ -5,6 +5,10 @@ resource "aws_instance" "docker" {
     tags = {
         Name = "${var.project}-${var.environment}-docker"
     }
+     root_block_device {
+        volume_size = 50
+        volume_type = "gp3" # or "gp2", depending on your preference
+    }
 }
 
 resource "aws_security_group" "docker" {
