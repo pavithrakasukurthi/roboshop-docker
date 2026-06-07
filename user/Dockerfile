@@ -12,7 +12,7 @@ FROM node:20 AS build
 WORKDIR /opt/app
 COPY package.json .
 RUN npm install
-COPY server.js
+COPY server.js .
 
 FROM node:20
 WORKDIR /opt/app
