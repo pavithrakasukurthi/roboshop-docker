@@ -16,6 +16,7 @@
 FROM python:3.9.25-alpine3.21 AS build
 WORKDIR /opt/app
 COPY requirements.txt .
+RUN apk add --no-cache gcc musl-dev python3-dev linux-headers
 RUN pip install -r requirements.txt
 COPY *.py .
 COPY payment.ini .
