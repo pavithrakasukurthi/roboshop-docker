@@ -16,7 +16,10 @@
 FROM python:3.9.25-alpine3.21 AS build
 WORKDIR /opt/app
 COPY requirements.txt .
-RUN apk add --no-cache gcc musl-dev python3-dev linux-headers
+RUN apk add --no-cache \
+    build-base \
+    linux-headers \
+    pcre-dev
 RUN pip install -r requirements.txt
 COPY *.py .
 COPY payment.ini .
@@ -25,6 +28,7 @@ FROM python:3.9.25-alpine3.21
 WORKDIR /opt/app
 LABEL project="roboshop" \
       component="payment"
+RUN apk add --no-cache pcre
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop 
 COPY --from=build --chown=roboshop:roboshop /opt/app /opt/app
 ENV CART_HOST="cart" \
