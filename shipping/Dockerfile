@@ -11,8 +11,9 @@
 FROM maven:3.9.11 AS build
 WORKDIR /opt/app
 COPY pom.xml .
-RUN mvn clean install && mv target/shipping-1.0.jar shipping.jar
 COPY src ./src
+RUN mvn clean install && mv target/shipping-1.0.jar shipping.jar
+
 
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /opt/app
