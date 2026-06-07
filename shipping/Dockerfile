@@ -16,7 +16,7 @@ COPY src ./src
 
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /opt/app
-RUN groupadd -r roboshop && useradd -r -g roboshop roboshop
+RUN addgroup -S roboshop && adduser -S roboshop -G roboshop 
 LABEL project="roboshop" \
       component="shipping"
 ENV CART_ENDPOINT="cart:8080" \

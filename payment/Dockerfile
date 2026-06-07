@@ -13,14 +13,14 @@
 #     AMQP_PASS="roboshop123"
 # CMD ["uwsgi", "--ini", "payment.ini"]
 
-FROM python:3 AS build
+FROM python:3.9.25-alpine3.21 AS build
 WORKDIR /opt/app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY *.py .
 COPY payment.ini .
 
-FROM python:3
+FROM python:3.9.25-alpine3.21
 WORKDIR /opt/app
 LABEL project="roboshop" \
       component="payment"
