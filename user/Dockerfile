@@ -8,13 +8,13 @@
 #     MONGO_URL="mongodb://mongodb:27017/users" 
 # CMD ["node", "server.js"]
 
-FROM node:20 AS build
+FROM node:20.19.5-alpine3.21 AS build
 WORKDIR /opt/app
 COPY package.json .
 RUN npm install
 COPY server.js .
 
-FROM node:20
+FROM node:20.19.5-alpine3.21
 WORKDIR /opt/app
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
 LABEL project="roboshop" \

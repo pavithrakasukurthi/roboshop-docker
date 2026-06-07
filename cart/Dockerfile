@@ -8,13 +8,13 @@
 #     CATALOGUE_PORT="8080"
 # CMD ["node", "server.js"]
 
-FROM node:20 AS build
+FROM node:20.19.5-alpine3.21 AS build
 WORKDIR /opt/app
 COPY package.json .
 RUN npm install
 COPY server.js .
 
-FROM node:20
+FROM node:20.19.5-alpine3.21
 WORKDIR /opt/app
 RUN groupadd -r roboshop && useradd -r -g roboshop roboshop
 LABEL project="roboshop" \
