@@ -16,7 +16,7 @@ COPY server.js .
 
 FROM node:20.19.5-alpine3.21
 WORKDIR /opt/app
-RUN groupadd -r roboshop && useradd -r -g roboshop roboshop
+RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
 LABEL project="roboshop" \
       component="cart" 
 ENV REDIS_HOST="redis" \
