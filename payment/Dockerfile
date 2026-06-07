@@ -20,7 +20,7 @@ RUN apk add --no-cache \
     build-base \
     linux-headers \
     pcre-dev
-RUN pip install -r requirements.txt
+RUN pip3 install --prefix=/install -r requirements.txt
 COPY *.py .
 COPY payment.ini .
 
@@ -30,7 +30,8 @@ LABEL project="roboshop" \
       component="payment"
 RUN apk add --no-cache pcre
 RUN addgroup -S roboshop && adduser -S roboshop -G roboshop 
-COPY --from=build --chown=roboshop:roboshop /opt/app /opt/app
+COPY --from=build /install /usr/local
+COPY --chown=roboshop:roboshop payment.ini *.py requirements.txt .
 ENV CART_HOST="cart" \
     CART_PORT="8080" \
     USER_HOST="user" \
