@@ -6,7 +6,7 @@ resource "aws_instance" "docker" {
         Name = "${var.project}-${var.environment}-docker"
     }
      root_block_device {
-        volume_size = 50
+        volume_size = 70
         volume_type = "gp3" # or "gp2", depending on your preference
     }
 
